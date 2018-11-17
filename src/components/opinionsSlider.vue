@@ -2,7 +2,7 @@
     <div class="sliderContainer">
         <div 
             v-for="({id, opinionDescription, name}) in clientsOpinion.slice(startSliderNumber, endSliderNumber)" 
-            :class="{ slideInLeft: middleSlideIndex === id }"
+            :class="{ slideInLeft: middleSlideIndex === id, width: middleSlideIndex === id }"
             :key="id"
             class="opinionContainer"
             >
@@ -139,12 +139,15 @@ export default {
         .opinionContainer{
             display: flex;
             flex-direction: column;
-            width: 100%;
+            width: 30%;
             height: 250px;
             box-shadow: 0px 0px 15px #4c4c4c;
             border-radius: 20px;
             margin:0px 30px;
             background: #FFF;
+        }
+        .width{
+            width: 40%;
         }
         .slideInLeft{
             animation: slideInLeft;
