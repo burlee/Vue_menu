@@ -3,6 +3,22 @@ $secondary-color: #F7F3F1;
 $three-color: #ffffff;
 $bg-opacity: 0.9;
 
+
+
+.btn.btn-primary{
+    width: 200px;
+    height: 40px;
+    background: blue;
+    border-radius: 10px;
+}
+
+.btn.btn-danger{
+    width: 200px;
+    height: 40px;
+    background: $primary-color;
+    border-radius: 10px;
+}
+
 @mixin easeOut {
     transition: all .4s ease-out;
 }

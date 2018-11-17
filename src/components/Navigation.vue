@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'Navigation',
     data(){
@@ -24,7 +25,7 @@ export default {
             console.log(this.showMenu)
             this.showMenu = !this.showMenu;
         },
-        resizeWindowHandler(){
+        sizeWindowHandler(){
             const windowSize = window.innerWidth;
             console.log(this.showToggleButton);
             if(windowSize <= 768){
@@ -37,10 +38,11 @@ export default {
         }
     },
     created() {
-        window.addEventListener("resize", this.resizeWindowHandler);
+        this.sizeWindowHandler();
+        window.addEventListener("resize", this.sizeWindowHandler);
     },
     destroyed() {
-        window.removeEventListener("resize", this.resizeWindowHandler);
+        window.removeEventListener("resize", this.sizeWindowHandler);
     },
 }
 </script>
