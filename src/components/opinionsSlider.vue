@@ -6,7 +6,7 @@
             :key="id"
             class="opinionContainer"
             >
-            <p>{{opinionDescription}}</p>
+            <p :class="{ slideInDown: middleSlideIndex === id }">{{opinionDescription}}</p>
             <span>{{name}}</span>
         </div>
         <button class="nextBtnSlider" @click="nextSlide">Next</button>
@@ -150,6 +150,10 @@ export default {
             animation: slideInLeft;
             animation-duration: 1s;
         }
+        .slideInDown{
+            animation: slideInDown;
+            animation-duration: 1s;
+        }
     }
 
     @-webkit-keyframes slideInLeft {
@@ -177,5 +181,31 @@ export default {
         transform: translate3d(0, 0, 0);
     }
     }
+
+    @-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
 </style>
 
