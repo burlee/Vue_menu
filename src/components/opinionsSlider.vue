@@ -2,12 +2,12 @@
     <div class="sliderContainer">
         <div 
             v-for="({id, opinionDescription, name}) in clientsOpinion.slice(startSliderNumber, endSliderNumber)" 
-            :class="{ slideInLeft: middleSlideIndex === id, width: middleSlideIndex === id }"
+            :class="{ fadeInFromNone: middleSlideIndex === id, width: middleSlideIndex === id }"
             :key="id"
             class="opinionContainer"
             >
             <p :class="{ slideInDown: middleSlideIndex === id }">{{opinionDescription}}</p>
-            <span>{{name}}</span>
+            <span :class="{ slideInDown: middleSlideIndex === id }">{{name}}</span>
         </div>
         <button class="nextBtnSlider" @click="nextSlide">Next</button>
         <button class="previousBtnSlider" @click="previousSlide">Prev</button>
@@ -72,7 +72,17 @@ export default {
         }
     },
     methods: {
+        sliderStartFn(){
+            setInterval(() => {
+                if(this.currentSlider === 3){
+                    this.currentSlider = 0;
+                }
+                this.currentSlider++;
+                console.log(this.currentSlider)
+            }, 6000)
+        },
         nextSlide(){
+            this.currentSlider = 2;
             if(this.startSliderNumber+3 === this.clientsOpinion.length){
                 this.startSliderNumber=-1;
                 this.endSliderNumber=2;
@@ -88,12 +98,21 @@ export default {
             this.endSliderNumber--;
             this.middleSlideIndex--;
         }
+    },
+    created(){
+        this.sliderStartFn();
     }
 }
 </script>
 
 <style lang="scss" scoped>
     .sliderContainer{
+        .displayNone{
+            display: none;
+        }
+        .displayBlock{
+            display: block;
+        }
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -157,6 +176,27 @@ export default {
             animation: slideInDown;
             animation-duration: 1s;
         }
+        .fadeInFromNone{
+            animation: fadeInFromNone;
+            animation-duration: 1s;
+        }
+    }
+
+    @keyframes fadeInFromNone {
+        0% {
+            display: none;
+            opacity: 0;
+        }
+
+        1% {
+            display: block;
+            opacity: 0;
+        }
+
+        100% {
+            display: block;
+            opacity: 1;
+        }
     }
 
     @-webkit-keyframes slideInLeft {
@@ -186,17 +226,17 @@ export default {
     }
 
     @-webkit-keyframes slideInDown {
-  from {
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-    visibility: visible;
-  }
+        from {
+            -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+            visibility: visible;
+        }
 
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
+        to {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
 
 @keyframes slideInDown {
   from {
