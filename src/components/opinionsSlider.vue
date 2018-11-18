@@ -72,15 +72,6 @@ export default {
         }
     },
     methods: {
-        sliderStartFn(){
-            setInterval(() => {
-                if(this.currentSlider === 3){
-                    this.currentSlider = 0;
-                }
-                this.currentSlider++;
-                console.log(this.currentSlider)
-            }, 6000)
-        },
         nextSlide(){
             this.currentSlider = 2;
             if(this.startSliderNumber+3 === this.clientsOpinion.length){
@@ -98,9 +89,6 @@ export default {
             this.endSliderNumber--;
             this.middleSlideIndex--;
         }
-    },
-    created(){
-        this.sliderStartFn();
     }
 }
 </script>

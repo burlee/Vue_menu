@@ -12,6 +12,10 @@
     <button :disabled="disabled">Wyślij</button>
     <button @click="cleanInput">Clear</button>
     <Slider/>
+
+    <p class="displayNone" :class="{displayBlock: currentDisplaySilde === 1}">lorem1</p>
+    <p class="displayNone" :class="{displayBlock: currentDisplaySilde === 2}">lorem2</p>
+    <p class="displayNone" :class="{displayBlock: currentDisplaySilde === 3}">lorem3</p>
   </Fragment>
 </template>
 
@@ -27,6 +31,7 @@ export default {
   },
   data(){
     return{
+      currentDisplaySilde: 1,
       borderColor: `red`,
       title: 'Example title',
       disabled: true,
@@ -38,6 +43,15 @@ export default {
     }
   },
   methods: {
+      startSliderFn(){
+        setInterval(()=> {
+          if(this.currentDisplaySilde === 3){
+              this.currentDisplaySilde = 1
+              console.log(this.currentDisplaySilde)
+          };
+          this.currentDisplaySilde++;
+        }, 2000)
+      },
       cleanInput(){
         setTimeout(() => {
           
@@ -58,11 +72,20 @@ export default {
           this.disabled = true
         }
       }
+  },
+  created(){
+    this.startSliderFn();
   }
 }
 </script>
 
 <style lang="scss">
+  .displayNone{
+    display: none;
+  }
+  .displayBlock{
+    display: block;
+  }  
   .contact{
     width: 250px;
     height: 250px;
