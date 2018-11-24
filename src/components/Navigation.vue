@@ -37,13 +37,11 @@ export default {
             }
         }
     },
-    created() {
-        this.sizeWindowHandler();
-        window.addEventListener("resize", this.sizeWindowHandler);
-    },
-    destroyed() {
-        window.removeEventListener("resize", this.sizeWindowHandler);
-    },
+    mounted(){
+        this.$nextTick(()=>{
+            
+        })
+    }
 }
 </script>
 

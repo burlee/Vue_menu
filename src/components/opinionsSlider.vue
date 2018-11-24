@@ -1,13 +1,14 @@
 <template>
     <div class="sliderContainer">
         <div 
-            v-for="({id, opinionDescription, name}) in clientsOpinion.slice(startSliderNumber, endSliderNumber)" 
-            :class="{ fadeInFromNone: middleSlideIndex === id, width: middleSlideIndex === id }"
-            :key="id"
+            v-for="(opinion, i) in clientsOpinion.slice(currentIndex, currentIndex + 3)" 
+            :class="{ slideInLeft:  currentIndex === i , width: middleIndex === i+1 }"
+            :key="i"
             class="opinionContainer"
             >
-            <p :class="{ slideInDown: middleSlideIndex === id }">{{opinionDescription}}</p>
-            <span :class="{ slideInDown: middleSlideIndex === id }">{{name}}</span>
+            <p :class="{ fadeInFromNone: middleIndex === i+1, width: middleIndex === i+1 }" >{{i}}</p>
+            <p>{{opinion.opinionDescription}}</p>
+            <span>{{opinion.name}}</span>
         </div>
         <button class="nextBtnSlider" @click="nextSlide">Next</button>
         <button class="previousBtnSlider" @click="previousSlide">Prev</button>
@@ -19,9 +20,8 @@ export default {
     name: 'opinionSlider',
     data(){
         return{
-            startSliderNumber: 0,
-            endSliderNumber: 3,
-            middleSlideIndex: 2,
+            currentIndex: 0,
+            middleIndex: 2,
             clientsOpinion: [
                 {
                     id: 1,
@@ -36,58 +36,41 @@ export default {
                 {
                     id: 3,
                     name: '2',
-                    opinionDescription: 'Opis pierwszej opini'
+                    opinionDescription: 'Opis drugie opini'
+                },
+                {
+                    id: 4,
+                    name: '3',
+                    opinionDescription: 'Opis trzeciej opini'
+                },
+                {
+                    id: 4,
+                    name: '3',
+                    opinionDescription: 'Opis czwartej opini'
                 },
                 {
                     id: 4,
                     name: '3',
                     opinionDescription: 'Opis drugiej opini'
-                },
-                {
-                    id: 5,
-                    name: '4',
-                    opinionDescription: 'Opis drugiej opini'
-                },
-                {
-                    id: 6,
-                    name: '5',
-                    opinionDescription: 'Opis drugiej opini'
-                },
-                {
-                    id: 7,
-                    name: '6',
-                    opinionDescription: 'Opis drugiej opini'
-                },
-                {
-                    id: 8,
-                    name: '6',
-                    opinionDescription: 'Opis drugiej opini'
-                },
-                {
-                    id: 9,
-                    name: '',
-                    opinionDescription: ''
-                },
+                }
             ]
         }
     },
     methods: {
         nextSlide(){
-            this.currentSlider = 2;
-            if(this.startSliderNumber+3 === this.clientsOpinion.length){
-                this.startSliderNumber=-1;
-                this.endSliderNumber=2;
-                this.middleSlideIndex=1;
-            };
-            this.startSliderNumber++;
-            this.endSliderNumber++;
-            this.middleSlideIndex++;
+            if(this.currentIndex === this.clientsOpinion.length-3){
+                this.currentIndex = 0;
+            }else{
+                this.currentIndex++;
+            }
         },
         previousSlide(){
-            if(this.endSliderNumber === 3) return;
-            this.startSliderNumber--;
-            this.endSliderNumber--;
-            this.middleSlideIndex--;
+            if(this.currentIndex === 0){
+                console.log(this.clientsOpinion.length)
+                this.currentIndex = this.clientsOpinion.length - 3;
+            }else{
+                this.currentIndex--;
+            }
         }
     }
 }
