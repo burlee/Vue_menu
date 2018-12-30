@@ -1,12 +1,9 @@
 <template>
     <nav>
-        <div class="Logo">LOGO</div>
-        <ul v-if="showMenu">
-            <li>Home</li>
-            <li>Official</li>
-            <li>Contact</li>
-        </ul>
-        <button v-if="showToggleButton" @click="toggleMenu">X</button>
+        <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero recusandae quo quos nesciunt itaque consectetur dolores quis magnam vel, rem dignissimos! Molestias ducimus dolorem corporis consequatur temporibus, sed adipisci! Quasi, voluptates? Obcaecati assumenda adipisci ducimus, numquam hic, dolores iure corrupti consequatur, deleniti impedit voluptates blanditiis non nobis odit porro ab perspiciatis dignissimos amet qui ullam maxime! Ex a, facilis quod corrupti libero laboriosam eum maiores aperiam, facere explicabo corporis voluptatum!
+        </p>
+        
     </nav>
 </template>
 
@@ -28,7 +25,7 @@ export default {
         sizeWindowHandler(){
             const windowSize = window.innerWidth;
             console.log(this.showToggleButton);
-            if(windowSize <= 768){
+            if(windowSize <= 768){1
                 this.showToggleButton = true;
                 this.showMenu = false;
             }else{
@@ -50,12 +47,15 @@ export default {
 
     nav{
         width: 100%;
-        height: 100px;
+        height: 50px;
         background: #ccc;
         padding: 0px 25px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        p{
+            
+        }
         button{
             width: 25px;
             height: 25px;
@@ -80,6 +80,17 @@ export default {
             }
         }
     }
+
+    @media (orientation: landscape) and (max-width: 320px){
+        nav{
+
+        .Logo{
+            color: green;
+            font-size: 12px;
+        }
+        }
+    }
+
     @include Medium{
         nav{
             ul{

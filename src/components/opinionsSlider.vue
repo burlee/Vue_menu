@@ -1,14 +1,12 @@
 <template>
     <div class="sliderContainer">
-        <div 
-            v-for="(opinion, i) in clientsOpinion.slice(currentIndex, currentIndex + 3)" 
-            :class="{ slideInLeft:  currentIndex === i , width: middleIndex === i+1 }"
-            :key="i"
-            class="opinionContainer"
-            >
-            <p :class="{ fadeInFromNone: middleIndex === i+1, width: middleIndex === i+1 }" >{{i}}</p>
-            <p>{{opinion.opinionDescription}}</p>
-            <span>{{opinion.name}}</span>
+        <div class="opinionContainer">
+
+        </div>
+        <div class="opinionContainer">
+            <p>{{clientsOpinion[currentIndex].name}}</p>
+        </div>
+        <div class="opinionContainer">
         </div>
         <button class="nextBtnSlider" @click="nextSlide">Next</button>
         <button class="previousBtnSlider" @click="previousSlide">Prev</button>
@@ -16,41 +14,41 @@
 </template>
 
 <script>
+
 export default {
     name: 'opinionSlider',
     data(){
         return{
             currentIndex: 0,
-            middleIndex: 2,
             clientsOpinion: [
                 {
                     id: 1,
-                    name: '',
-                    opinionDescription: ''
+                    name: 'Seweryn',
+                    opinionDescription: 'Opis pierwszej opini'
                 },
                 {
                     id: 2,
-                    name: '1',
+                    name: 'Andrzej',
                     opinionDescription: 'Opis pierwszej opini'
                 },
                 {
                     id: 3,
-                    name: '2',
+                    name: 'Kimla',
                     opinionDescription: 'Opis drugie opini'
                 },
                 {
                     id: 4,
-                    name: '3',
+                    name: 'ada',
                     opinionDescription: 'Opis trzeciej opini'
                 },
                 {
                     id: 4,
-                    name: '3',
+                    name: 'arek',
                     opinionDescription: 'Opis czwartej opini'
                 },
                 {
                     id: 4,
-                    name: '3',
+                    name: 'xd',
                     opinionDescription: 'Opis drugiej opini'
                 }
             ]
@@ -58,19 +56,21 @@ export default {
     },
     methods: {
         nextSlide(){
-            if(this.currentIndex === this.clientsOpinion.length-3){
+            if(this.currentIndex === this.clientsOpinion.length-1){
                 this.currentIndex = 0;
             }else{
                 this.currentIndex++;
             }
         },
         previousSlide(){
-            if(this.currentIndex === 0){
-                console.log(this.clientsOpinion.length)
-                this.currentIndex = this.clientsOpinion.length - 3;
+            if(this.currentIndex === 0 ){
+                alert('jest')
+                this.currentIndex = this.clientsOpinion.length;
             }else{
+            
                 this.currentIndex--;
             }
+            
         }
     }
 }
@@ -92,28 +92,31 @@ export default {
         height: 400px;
         background: #ccc;
         position: relative;
-        &::before{
-            content: "";
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 25%;
-            height: 100%;
-            border-radius: 3px;
-            background: #40505d;
-            filter: blur(15px);
-        }
-        &::after{
-            content: "";
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            width: 25%;
-            height: 100%;
-            border-radius: 3px;
-            background: #40505d;
-            filter: blur(15px);
-        }
+        // &::before{
+        //     content: "";
+        //     position: absolute;
+        //     top: 0px;
+        //     left: 0px;
+        //     width: 25%;
+        //     height: 100%;
+        //     border-radius: 3px;
+        //     background: #40505d;
+        //     z-index: 1;
+        //     box-shadow: 10px 5px 5px #40505d;
+        // }
+        // &::after{
+        //     content: "";
+        //     position: absolute;
+        //     top: 0px;
+        //     right: 0px;
+        //     width: 25%;
+        //     height: 100%;
+        //     border-radius: 3px;
+        //     background: #40505d;
+        //     filter: blur(15px);
+        //     animation: slideInLeft;
+        //     animation-duration: 1s;
+        // }
         .nextBtnSlider{
             position: absolute;
             top: 50%;
@@ -171,16 +174,16 @@ export default {
     }
 
     @-webkit-keyframes slideInLeft {
-        from {
+        0% {
             -webkit-transform: translate3d(-100%, 0, 0);
             transform: translate3d(-100%, 0, 0);
             visibility: visible;
         }
 
-        to {
+        100% {
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
-                }
+        }
     }
 
     @keyframes slideInLeft {

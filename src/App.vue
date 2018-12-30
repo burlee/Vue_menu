@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <Navigation/>
-    <router-view/>
+    <Swiper/>
+    <!-- <router-view/> -->
   </div>
 </template>
 
 <script>
 import Navigation from '@/components/Navigation'
+import Swiper from '@/components/Swiper';
 
 export default {
   components: {
-    Navigation
+    Navigation,
+    Swiper
   }
 }
 </script>

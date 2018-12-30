@@ -8,7 +8,7 @@
 <script>
 import Navigation from '@/components/Navigation';
 import Fragment from '../Fragment.js';
-import Slider from '../components/opinionsSlider';
+import Slider from '@/components/opinionsSlider';
 import $ from 'jquery';
 
 export default {
