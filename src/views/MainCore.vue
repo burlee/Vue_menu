@@ -6,20 +6,19 @@
 </template>
 
 <script>
-import Navigation from '@/components/Navigation';
 import Fragment from '../Fragment.js';
-import Slider from '@/components/opinionsSlider';
-import $ from 'jquery';
 
 export default {
+  props: ['isOpen'],
   components: {
-    Navigation,
-    Slider
   },
   data(){
     return{
       currentDisplaySilde: 1
     }
+  },
+  created(){
+    console.log(this.$props)
   },
   methods: {
     toggle: e => {

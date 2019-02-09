@@ -1,14 +1,22 @@
 <template>
     <div class="modal">
         <h1>To jest modal</h1>
-        <button class="btn btn-danger">Hej</button>
+        <button class="btn btn-danger" @click="show">Hej</button>
         <button class="btn btn-primary">Hejjj</button>
     </div>
 </template>
 
 <script>
 export default {
-
+    props: ['isOpen'],
+    created(){
+        console.log(this.$props)
+    },
+    methods: {
+        show(){
+            console.log(this.$props)
+        }
+    }
 }
 </script>
 
